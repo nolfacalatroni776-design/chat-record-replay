@@ -12,6 +12,7 @@ const state = {
 
 const elements = {
   fileInput: document.getElementById("fileInput"),
+  loadDefaultBtn: document.getElementById("loadDefaultBtn"),
   loadDemoBtn: document.getElementById("loadDemoBtn"),
   dropzone: document.getElementById("dropzone"),
   loadState: document.getElementById("loadState"),
@@ -171,6 +172,26 @@ async function loadDemo() {
   } catch (error) {
     setLoadState("演示不可用");
     showToast(`演示加载失败：${error.message}`);
+  }
+}
+
+async function loadDefaultRecords() {
+  try {
+    setLoadState("加载默认记录");
+    const response = await fetch("data/default-records.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const records = await response.json();
+    const analysis = A.analyzeRecords(records, {
+      fileName: "2026-05-29消息记录.xlsx",
+      sheetName: "导出结果",
+      rowsRead: records.length + 1
+    });
+    loadAnalysis(analysis);
+    setLoadState("默认记录已加载", true);
+    showToast(`默认聊天记录已加载：${A.formatNumber(analysis.totals.messages)} 条消息。`);
+  } catch (error) {
+    setLoadState("默认记录不可用");
+    showToast(`默认记录加载失败：${error.message}`);
   }
 }
 
@@ -345,8 +366,8 @@ function handleComboKeydown(type, event) {
 function renderReplay() {
   if (!state.analysis) {
     $("chatTitle").textContent = "未选择群";
-    $("chatSubtitle").textContent = "上传 Excel 或加载脱敏演示后开始还原";
-    $("chatTranscript").innerHTML = "<div class=\"chat-empty\">上传 Excel 或加载脱敏演示后开始还原</div>";
+    $("chatSubtitle").textContent = "正在加载默认聊天记录";
+    $("chatTranscript").innerHTML = "<div class=\"chat-empty\">正在加载默认聊天记录</div>";
     updateSummary([], []);
     return;
   }
@@ -423,6 +444,7 @@ function renderChatBubble(record, index) {
 }
 
 elements.fileInput.addEventListener("change", (event) => loadFile(event.target.files[0]));
+elements.loadDefaultBtn.addEventListener("click", loadDefaultRecords);
 elements.loadDemoBtn.addEventListener("click", loadDemo);
 elements.restoreBtn.addEventListener("click", renderReplay);
 
@@ -467,4 +489,6 @@ elements.dropzone.addEventListener("drop", (event) => {
 
 if (new URLSearchParams(window.location.search).get("demo") === "1") {
   loadDemo();
+} else {
+  loadDefaultRecords();
 }

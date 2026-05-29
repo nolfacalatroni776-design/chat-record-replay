@@ -12,13 +12,14 @@
       <div>
         <p class="eyebrow">Chat Record Replay</p>
         <h1>项目聊天记录还原</h1>
-        <p id="fileMeta">上传 Excel 后，选择项目ID和群名还原真实聊天页面。</p>
+        <p id="fileMeta">正在加载默认聊天记录。</p>
       </div>
       <div class="toolbar-actions">
         <label class="file-button">
           <input id="fileInput" type="file" accept=".xlsx,.xls,.csv">
           上传 Excel
         </label>
+        <button class="btn" id="loadDefaultBtn" type="button">重新加载默认记录</button>
         <button class="btn" id="loadDemoBtn" type="button">加载脱敏演示</button>
       </div>
     </header>
@@ -28,7 +29,7 @@
         <strong>消息记录 Excel</strong>
         <span>字段：消息内容、发送用户、用户角色、群名、项目ID、发送时间</span>
       </div>
-      <b id="loadState">等待数据</b>
+      <b id="loadState">加载默认记录</b>
     </section>
 
     <section class="control-panel" aria-label="聊天还原控制台">
@@ -94,7 +95,7 @@
         </div>
       </div>
       <div class="chat-transcript" id="chatTranscript">
-        <div class="chat-empty">上传 Excel 或加载脱敏演示后开始还原</div>
+        <div class="chat-empty">正在加载默认聊天记录</div>
       </div>
     </section>
   </main>

@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "export-default": "node scripts/export-default-data.js",
     "preview": "python3 -m http.server 8767",
     "verify": "node scripts/verify.js"
   },
