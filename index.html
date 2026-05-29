@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>项目聊天记录还原</title>
+  <link rel="stylesheet" href="assets/replay.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="toolbar">
+      <div>
+        <p class="eyebrow">Chat Record Replay</p>
+        <h1>项目聊天记录还原</h1>
+        <p id="fileMeta">上传 Excel 后，选择项目ID和群名还原真实聊天页面。</p>
+      </div>
+      <div class="toolbar-actions">
+        <label class="file-button">
+          <input id="fileInput" type="file" accept=".xlsx,.xls,.csv">
+          上传 Excel
+        </label>
+        <button class="btn" id="loadDemoBtn" type="button">加载脱敏演示</button>
+      </div>
+    </header>
+
+    <section class="dropzone" id="dropzone">
+      <div>
+        <strong>消息记录 Excel</strong>
+        <span>字段：消息内容、发送用户、用户角色、群名、项目ID、发送时间</span>
+      </div>
+      <b id="loadState">等待数据</b>
+    </section>
+
+    <section class="control-panel" aria-label="聊天还原控制台">
+      <div class="combo-field">
+        <span>项目ID</span>
+        <div class="search-combo" id="projectCombo" data-placeholder="搜索或选择项目ID">
+          <button class="combo-trigger" id="projectComboButton" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span id="projectComboLabel">先加载数据</span>
+          </button>
+          <div class="combo-popover" id="projectComboPopover">
+            <input id="projectComboSearch" type="search" placeholder="搜索项目ID、消息数、群数" autocomplete="off">
+            <div class="combo-options" id="projectComboOptions" role="listbox"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="combo-field">
+        <span>群名</span>
+        <div class="search-combo" id="groupCombo" data-placeholder="搜索或选择群名">
+          <button class="combo-trigger" id="groupComboButton" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span id="groupComboLabel">先选择项目ID</span>
+          </button>
+          <div class="combo-popover" id="groupComboPopover">
+            <input id="groupComboSearch" type="search" placeholder="搜索群名、消息数、用户数" autocomplete="off">
+            <div class="combo-options" id="groupComboOptions" role="listbox"></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn dark" id="restoreBtn" type="button">还原聊天页</button>
+    </section>
+
+    <section class="summary-row" aria-label="当前还原摘要">
+      <div>
+        <span>项目消息</span>
+        <strong id="projectCount">-</strong>
+      </div>
+      <div>
+        <span>当前群消息</span>
+        <strong id="groupCount">-</strong>
+      </div>
+      <div>
+        <span>参与用户</span>
+        <strong id="userCount">-</strong>
+      </div>
+      <div>
+        <span>时间范围</span>
+        <strong id="dateRange">-</strong>
+      </div>
+    </section>
+
+    <section class="chat-screen" aria-label="聊天记录还原页面">
+      <div class="chat-appbar">
+        <div class="chat-menu" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="chat-heading">
+          <strong id="chatTitle">未选择群</strong>
+          <span id="chatSubtitle">加载数据后选择项目和群</span>
+        </div>
+        <div class="chat-actions">
+          <span class="chat-notice-icon" aria-hidden="true"></span>
+          <b>群公告</b>
+          <span class="chat-member-icon" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="chat-transcript" id="chatTranscript">
+        <div class="chat-empty">上传 Excel 或加载脱敏演示后开始还原</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script src="assets/analytics.js"></script>
+  <script src="assets/replay.js"></script>
+</body>
+</html>

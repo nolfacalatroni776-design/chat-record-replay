@@ -1,0 +1,98 @@
+[
+  {
+    "消息内容": "Hi team, the recording batch is now open. Please check the guideline before starting.",
+    "发送用户": "pm_lina",
+    "用户角色": "IM_PM",
+    "群名": "[A13389]English recording-1-Poland",
+    "项目ID": "demo-project-english-poland",
+    "发送时间": "2026-05-29 09:02:11"
+  },
+  {
+    "消息内容": "Got it, I can see the task page now.",
+    "发送用户": "worker_anna",
+    "用户角色": "IM_WORKER",
+    "群名": "[A13389]English recording-1-Poland",
+    "项目ID": "demo-project-english-poland",
+    "发送时间": "2026-05-29 09:04:38"
+  },
+  {
+    "消息内容": "Please use a quiet room and keep each clip under 20 seconds.",
+    "发送用户": "pm_lina",
+    "用户角色": "IM_PM",
+    "群名": "[A13389]English recording-1-Poland",
+    "项目ID": "demo-project-english-poland",
+    "发送时间": "2026-05-29 09:08:25"
+  },
+  {
+    "消息内容": "Can we submit five samples first for review?",
+    "发送用户": "worker_marek",
+    "用户角色": "IM_WORKER",
+    "群名": "[A13389]English recording-1-Poland",
+    "项目ID": "demo-project-english-poland",
+    "发送时间": "2026-05-29 09:16:03"
+  },
+  {
+    "消息内容": "Yes, submit the first five and wait for QA feedback.",
+    "发送用户": "pm_lina",
+    "用户角色": "IM_PM",
+    "群名": "[A13389]English recording-1-Poland",
+    "项目ID": "demo-project-english-poland",
+    "发送时间": "2026-05-29 09:19:40"
+  },
+  {
+    "消息内容": "I uploaded the first batch. Please let me know if the volume is okay.",
+    "发送用户": "worker_anna",
+    "用户角色": "IM_WORKER",
+    "群名": "[A13389]English recording-1-Poland",
+    "项目ID": "demo-project-english-poland",
+    "发送时间": "2026-05-29 10:05:18"
+  },
+  {
+    "消息内容": "QA passed for the first batch. You can continue.",
+    "发送用户": "qa_mia",
+    "用户角色": "IM_PM",
+    "群名": "[A13389]English recording-1-Poland",
+    "项目ID": "demo-project-english-poland",
+    "发送时间": "2026-05-29 10:32:44"
+  },
+  {
+    "消息内容": "The Romanian group has a separate guideline. Please do not mix scripts.",
+    "发送用户": "pm_noah",
+    "用户角色": "IM_PM",
+    "群名": "[A12852]TTS/MOS project_Romanian",
+    "项目ID": "demo-project-tts-mos",
+    "发送时间": "2026-05-28 14:11:06"
+  },
+  {
+    "消息内容": "Do we need headphones for this task?",
+    "发送用户": "worker_ioana",
+    "用户角色": "IM_WORKER",
+    "群名": "[A12852]TTS/MOS project_Romanian",
+    "项目ID": "demo-project-tts-mos",
+    "发送时间": "2026-05-28 14:13:21"
+  },
+  {
+    "消息内容": "Headphones are recommended for checking audio quality.",
+    "发送用户": "pm_noah",
+    "用户角色": "IM_PM",
+    "群名": "[A12852]TTS/MOS project_Romanian",
+    "项目ID": "demo-project-tts-mos",
+    "发送时间": "2026-05-28 14:16:09"
+  },
+  {
+    "消息内容": "Task list is empty on my side.",
+    "发送用户": "worker_emil",
+    "用户角色": "IM_WORKER",
+    "群名": "[A12852]TTS/MOS project_Turkish",
+    "项目ID": "demo-project-tts-mos",
+    "发送时间": "2026-05-28 15:02:49"
+  },
+  {
+    "消息内容": "Please refresh after two minutes. The new batch is being released.",
+    "发送用户": "pm_noah",
+    "用户角色": "IM_PM",
+    "群名": "[A12852]TTS/MOS project_Turkish",
+    "项目ID": "demo-project-tts-mos",
+    "发送时间": "2026-05-28 15:04:12"
+  }
+]
