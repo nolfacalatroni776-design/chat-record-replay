@@ -334,7 +334,7 @@ button {
 }
 
 .chat-screen {
-  min-height: 720px;
+  height: 720px;
   margin-top: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -344,6 +344,8 @@ button {
     #ffffff;
   box-shadow: var(--shadow);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-screen::before {
@@ -362,8 +364,8 @@ button {
 }
 
 .chat-appbar {
-  position: sticky;
-  top: 0;
+  position: relative;
+  flex: 0 0 auto;
   z-index: 2;
   min-height: 72px;
   border-bottom: 1px solid #edf0f4;
@@ -373,6 +375,52 @@ button {
   gap: 14px;
   align-items: center;
   padding: 0 22px;
+}
+
+.chat-loading {
+  position: absolute;
+  inset: 72px 0 0;
+  z-index: 4;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(3px);
+  display: none;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  color: #26323f;
+  text-align: center;
+  padding: 24px;
+}
+
+.chat-screen.loading .chat-loading {
+  display: grid;
+}
+
+.chat-spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid #d8e2ea;
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.chat-loading strong {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.chat-loading em {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 760;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .chat-menu {
@@ -481,7 +529,11 @@ button {
 .chat-transcript {
   position: relative;
   z-index: 1;
-  min-height: 648px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
   padding: 20px 24px 28px;
 }
 
@@ -669,7 +721,7 @@ button {
   }
 
   .chat-screen {
-    min-height: 640px;
+    height: 640px;
   }
 
   .chat-bubble {

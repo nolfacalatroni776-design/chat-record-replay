@@ -19,6 +19,9 @@ const elements = {
   fileMeta: document.getElementById("fileMeta"),
   restoreBtn: document.getElementById("restoreBtn"),
   toast: document.getElementById("toast"),
+  chatScreen: document.getElementById("chatScreen"),
+  chatLoadingTitle: document.getElementById("chatLoadingTitle"),
+  chatLoadingText: document.getElementById("chatLoadingText"),
   projectCombo: document.getElementById("projectCombo"),
   projectComboButton: document.getElementById("projectComboButton"),
   projectComboLabel: document.getElementById("projectComboLabel"),
@@ -111,6 +114,13 @@ function setLoadState(text, isGood = false) {
   elements.loadState.classList.toggle("good", isGood);
 }
 
+function setChatLoading(isLoading, title = "正在加载", detail = "请稍候。") {
+  elements.chatScreen.classList.toggle("loading", isLoading);
+  elements.chatScreen.setAttribute("aria-busy", isLoading ? "true" : "false");
+  elements.chatLoadingTitle.textContent = title;
+  elements.chatLoadingText.textContent = detail;
+}
+
 function readWorkbookFromBuffer(buffer, fileName) {
   const workbook = XLSX.read(buffer, { type: "array", cellDates: false, dense: false });
   const sheetName = workbook.SheetNames[0];
@@ -139,18 +149,21 @@ function loadAnalysis(analysis) {
   renderProjectOptions();
   selectProject(state.combo.project.options[0] && state.combo.project.options[0].value, { silent: true });
   renderReplay();
+  setChatLoading(false);
 }
 
 async function loadFile(file) {
   if (!file) return;
   try {
     setLoadState("解析中");
+    setChatLoading(true, "正在解析上传文件", "正在读取 Excel 并生成聊天记录。");
     const buffer = await file.arrayBuffer();
     loadAnalysis(readWorkbookFromBuffer(buffer, file.name));
     setLoadState("已加载", true);
     showToast(`已解析 ${A.formatNumber(state.analysis.totals.messages)} 条消息。`);
   } catch (error) {
     setLoadState("解析失败");
+    setChatLoading(false);
     showToast(error.message);
   }
 }
@@ -158,6 +171,7 @@ async function loadFile(file) {
 async function loadDemo() {
   try {
     setLoadState("加载演示");
+    setChatLoading(true, "正在加载脱敏演示", "正在读取演示消息数据。");
     const response = await fetch("data/demo-records.json");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const records = await response.json();
@@ -171,6 +185,7 @@ async function loadDemo() {
     showToast("脱敏演示数据已加载。");
   } catch (error) {
     setLoadState("演示不可用");
+    setChatLoading(false);
     showToast(`演示加载失败：${error.message}`);
   }
 }
@@ -178,6 +193,7 @@ async function loadDemo() {
 async function loadDefaultRecords() {
   try {
     setLoadState("加载默认记录");
+    setChatLoading(true, "正在加载默认聊天记录", "正在读取 2026-05-29 消息记录，请稍候。");
     const response = await fetch("data/default-records.json");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const records = await response.json();
@@ -191,6 +207,7 @@ async function loadDefaultRecords() {
     showToast(`默认聊天记录已加载：${A.formatNumber(analysis.totals.messages)} 条消息。`);
   } catch (error) {
     setLoadState("默认记录不可用");
+    setChatLoading(false);
     showToast(`默认记录加载失败：${error.message}`);
   }
 }

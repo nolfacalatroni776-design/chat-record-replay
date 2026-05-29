@@ -81,7 +81,7 @@
       </div>
     </section>
 
-    <section class="chat-screen" aria-label="聊天记录还原页面">
+    <section class="chat-screen loading" id="chatScreen" aria-label="聊天记录还原页面" aria-busy="true">
       <div class="chat-appbar">
         <div class="chat-menu" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="chat-heading">
@@ -93,6 +93,11 @@
           <b>群公告</b>
           <span class="chat-member-icon" aria-hidden="true"></span>
         </div>
+      </div>
+      <div class="chat-loading" id="chatLoading" role="status" aria-live="polite">
+        <span class="chat-spinner" aria-hidden="true"></span>
+        <strong id="chatLoadingTitle">正在加载默认聊天记录</strong>
+        <em id="chatLoadingText">正在读取默认消息数据，请稍候。</em>
       </div>
       <div class="chat-transcript" id="chatTranscript">
         <div class="chat-empty">正在加载默认聊天记录</div>
